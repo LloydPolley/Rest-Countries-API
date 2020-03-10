@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Search from "../../components/Search/Search";
 import DropDown from "../../components/DropDown/DropDown";
 
-import { regionFetch, fetchAll } from "../../data/rest";
+import { regionFetch, fetchAll, searchFetch } from "../../data/rest";
 
 import CountryWidget from "../../components/CountryWidget/CountryWidget";
 
@@ -26,6 +26,19 @@ const Home = () => {
       });
   };
 
+  const searchFunction = (input) => {
+    setLoaded(false);
+    setCountries(
+      searchFetch(input).then(data => {
+        return data;
+      }).then((data)=>{
+        // console.log(data, 'search');
+        // setCountries(data);
+        // setLoaded(true);
+      })
+    );
+  }
+
   const regionSelect = region => {
     setLoaded(false);
     setCountries(
@@ -37,10 +50,12 @@ const Home = () => {
       })
     );
   };
+
   return (
     <div className="homeContainer">
-      <Search />
+      <Search search={searchFunction}/>
       <DropDown fetch={regionSelect} />
+      {/* {console.log(countries)} */}
       {!loaded ? (
         <h3>LOading</h3>
       ) : (
