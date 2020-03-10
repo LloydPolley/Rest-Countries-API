@@ -1,0 +1,57 @@
+@import './pages/Home/Home.scss';
+
+
+$darkModeElements: hsl(209, 23%, 22%);
+$darkModeBackground: hsl(207, 26%, 17%);
+$darkModeText: hsl(0, 0%, 98%);
+
+$lightModeElements: hsl(0, 0%, 100%);
+$lightModeBackground: hsl(0, 0%, 98%);
+$lightModeText: hsl(200, 15%, 8%);
+
+.darkMode{
+    background-color: $darkModeBackground;
+
+    h1,h2,h3,p{
+        color: $darkModeText;
+    }
+
+    .element{
+        background-color: $darkModeElements;
+    }
+    input, select, option{
+        border: none;
+        background-color: $darkModeElements;
+        border-radius: 5px;
+        color: $darkModeText;
+        padding: 1em;
+        box-sizing: border-box;
+
+        &::placeholder{
+            color: $darkModeText;
+        }
+    }
+}
+.lightMode{
+    background-color: $lightModeBackground;
+
+    h1,h2,h3,p{
+        color: $lightModeText;
+    }
+
+    .elements{
+        background-color: $lightModeElements;
+    }
+    input, select, option{
+        border: none;
+        background-color: $lightModeElements;
+        border-radius: 5px;
+        color: $lightModeText;
+        padding: 1em;
+        box-sizing: border-box;
+
+        &::placeholder{
+            color: $lightModeText;
+        }
+    }
+}

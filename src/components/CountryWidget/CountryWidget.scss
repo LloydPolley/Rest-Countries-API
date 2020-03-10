@@ -1,0 +1,20 @@
+.countryWidgetContainer{
+    width: 80vw;
+    margin: 10% auto;
+    border-radius: 0 0 5px 5px;
+    .countryWidget{
+        &__data{
+            padding: 1em 1.5em;
+        }
+        p{
+            font-weight: bold;
+            span{
+                font-weight: 400;
+            }
+        }
+    }
+
+    img{
+        max-width: 100%;
+    }
+}
