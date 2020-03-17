@@ -40,7 +40,8 @@ $lightModeText: hsl(200, 15%, 8%);
     }
 
     .elements{
-        background-color: $lightModeElements;
+        background-color: white;
+        box-shadow: 0px 0px 17px -6px rgba(0,0,0,0.75);
     }
     input, select, option{
         border: none;

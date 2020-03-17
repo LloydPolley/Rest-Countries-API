@@ -1,13 +1,16 @@
 import React from "react";
-import './Header.scss';
-import {toggleMode} from '../../mode/mode';
+import "./Header.scss";
+import { toggleMode } from "../../mode/mode";
+import { Link } from "react-router-dom";
 
 
 const Header = () => {
   return (
     <div className="headerContainer element">
       <div className="header">
-        <p>Where in the world?</p>
+        <Link to="/">
+          <p>Where in the world?</p>
+        </Link>
         <p onClick={toggleMode}>Dark Mode</p>
       </div>
     </div>
