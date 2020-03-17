@@ -9,7 +9,6 @@ const Search = props => {
     props.fetch(dropValue);
   }, [dropValue]);
 
-
   return (
     <div className="searchContainer">
       <div className="searchBox">
@@ -17,12 +16,10 @@ const Search = props => {
           placeholder="Search for country..."
           value={searchValue}
           onChange={e => {
-            if (!(e.target.value === "")) {
-              setSearchValue(e.target.value);
-              props.search(e.target.value);
-            } else {
-              setDropValue("");
-              props.reset();
+            props.search(e.target.value);
+            setSearchValue(e.target.value);
+            if (dropValue !== "All") {
+              setDropValue("All");
             }
           }}
         />
@@ -35,7 +32,8 @@ const Search = props => {
           value={dropValue}
           onChange={e => {
             setDropValue(e.target.value);
-            setSearchValue('');
+            setSearchValue("");
+            console.log("reset");
           }}
         >
           <option value="All">All</option>

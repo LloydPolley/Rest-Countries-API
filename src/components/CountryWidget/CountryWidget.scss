@@ -11,6 +11,7 @@
         width: 100%;
         display: flex;
         justify-content: center;
+        overflow: hidden;
         img{
             width: 100%;
         }
@@ -24,14 +25,13 @@
     .countryWidgetContainer{
         display: flex;
         flex-wrap: wrap;
-
     }
     .countryWidget{
         margin: 5% auto;
         width: 45%;
 
         &__image{
-            height: 150px;
+            height: 180px;
             object-fit: scale-down;
 
             img{

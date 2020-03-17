@@ -1,5 +1,7 @@
 .searchContainer {
-  margin: 5%;
+  width: 95vw;
+  max-width: 1300px;
+  margin: 3% auto;
   input{
     width: 100%;
     margin-bottom: 3%;
@@ -9,3 +11,4 @@
   .dropContainer {
   }
 }
+

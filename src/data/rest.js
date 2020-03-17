@@ -4,6 +4,14 @@ export const fetchAll = async () => {
   return data;
 };
 
+export const fetchCountry = async country => {
+  let response = await fetch(
+    `https://restcountries.eu/rest/v2/name/${country}`
+  );
+  let data = await response.json();
+  return data;
+};
+
 export const regionFetch = async region => {
   let response;
   if (region === "All") {
@@ -16,12 +24,18 @@ export const regionFetch = async region => {
 };
 
 export const searchFetch = async searchValue => {
-  console.log(searchValue, 'searchvalue');
-  let response = await fetch(
-    `https://restcountries.eu/rest/v2/name/${searchValue}`
-  );
+  console.log(searchValue, "searchvalue");
+  let response;
+  if (searchValue !== "") {
+    response = await fetch(
+      `https://restcountries.eu/rest/v2/name/${searchValue}`
+    );
+    
+  }else{
+    response = await fetch(`https://restcountries.eu/rest/v2/all`);
+  }
   let data = await response.json();
-  return data;
+    return data;
 };
 
 export const borderFetch = async (...args) => {
@@ -35,7 +49,11 @@ export const borderFetch = async (...args) => {
     );
     let data = await response.json();
     return data;
-  }else{
+  } else {
     return undefined;
   }
+};
+
+export const formatNumber = input => {
+  return input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };

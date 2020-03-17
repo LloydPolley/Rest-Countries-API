@@ -13,6 +13,7 @@ const Home = () => {
     fetchAllCountries();
   }, []);
 
+
   //Init load
   const fetchAllCountries = () => {
     fetchAll()
@@ -58,13 +59,17 @@ const Home = () => {
 
   return (
     <div className="homeContainer">
-      <Search search={searchFunction} reset={fetchAllCountries} fetch={regionSelect}/>
+      <Search
+        search={searchFunction}
+        reset={fetchAllCountries}
+        fetch={regionSelect}
+      />
       <div className="countryWidgetContainer">
         {!Array.isArray(countries) ? (
-          <h3>Loading</h3>
+          <h3 className="LoadingIcon">Loading</h3>
         ) : (
           countries.map(country => {
-            return <CountryWidget key={country.name} data={country} />;
+            return <CountryWidget key={country.name} data={country}/>;
           })
         )}
       </div>
