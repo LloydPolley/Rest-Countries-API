@@ -11,7 +11,8 @@ const Country = props => {
 
   useEffect(() => {
     loadCountryData(props.match.params.id);
-  }, []);
+  }, [countryData]);
+
   //Init load
   const loadCountryData = input => {
     fetchCountry(input)
@@ -22,17 +23,13 @@ const Country = props => {
         setCountryData(data[0]);
         return data[0];
       })
-      .then((data) => {
+      .then(data => {
         borderFetch(data.borders).then(data => {
-          console.log(data)
           setBorderState(data);
         });
       });
   };
 
-  useEffect(() => {
-    console.log(countryData);
-  }, [countryData]);
 
   const renderPage = () => (
     <div className="countryContainer">
@@ -41,59 +38,64 @@ const Country = props => {
       </div>
       <div className="countryContainer__right">
         <div className="countryContainer__data">
-          <div>
-            <h1>{countryData.name}</h1>
-            <p>
-              Native Name: <span>{countryData.nativeName}</span>
-            </p>
-            <p>
-              Population: <span>{formatNumber(countryData.population)}</span>
-            </p>
-            <p>
-              Region: <span>{countryData.region}</span>
-            </p>
-            <p>
-              Sub Region: <span>{countryData.subregion}</span>
-            </p>
-            <p>
-              Capital: <span>{countryData.capital}</span>
-            </p>
-            <p>
-              Top Level Domain: <span>{countryData.topLevelDomain}</span>
-            </p>
-            <p>
-              Currencies: <span>{countryData.currencies[0].name}</span>
-            </p>
-            <p>
-              Languages: <span>{countryData.languages[0].nativeName}</span>
-            </p>
+          <h1>{countryData.name}</h1>
+
+          <div className="top">
+            <div className="top__left">
+              <p>
+                Native Name: <span>{countryData.nativeName}</span>
+              </p>
+              <p>
+                Population: <span>{formatNumber(countryData.population)}</span>
+              </p>
+              <p>
+                Region: <span>{countryData.region}</span>
+              </p>
+              <p>
+                Sub Region: <span>{countryData.subregion}</span>
+              </p>
+              <p>
+                Capital: <span>{countryData.capital}</span>
+              </p>
+            </div>
+            <div className="top__right">
+              <p>
+                Top Level Domain: <span>{countryData.topLevelDomain}</span>
+              </p>
+              <p>
+                Currencies: <span>{countryData.currencies[0].name}</span>
+              </p>
+              <p>
+                Languages: <span>{countryData.languages[0].nativeName}</span>
+              </p>
+            </div>
           </div>
         </div>
         <div className="countryContainer__border">
-            <h3>Border Countries</h3>
-            <div className="borderCountries">
-              {borderState === undefined ? (
-                <p>No borders</p>
-              ) : (
-                borderState.map(border => {
-                  return (
-                    <Link
-                      key={border.name}
-                      onClick={() => {
-                        setBorderState([]);
-                      }}
-                      to={{
-                        pathname: `/country/${border.name}`,
-                        state: border
-                      }}
-                    >
-                      <p className="borderButton element">{border.name}</p>
-                    </Link>
-                  );
-                })
-              )}
-            </div>
+          <h3>Border Countries</h3>
+          <div className="borderCountries">
+            {borderState === undefined ? (
+              <p>No borders</p>
+            ) : (
+              borderState.map(border => {
+                return (
+                  <Link
+                    key={border.name}
+                    onClick={() => {
+                      setBorderState([]);
+                    }}
+                    to={{
+                      pathname: `/country/${border.name}`,
+                      state: border
+                    }}
+                  >
+                    <p className="borderButton element">{border.name}</p>
+                  </Link>
+                );
+              })
+            )}
           </div>
+        </div>
       </div>
     </div>
   );

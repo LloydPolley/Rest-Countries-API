@@ -1,7 +1,6 @@
 .searchContainer {
-  width: 95vw;
   max-width: 1300px;
-  margin: 3% auto;
+  margin: 1%;
   input{
     width: 100%;
     margin-bottom: 3%;
@@ -9,6 +8,9 @@
   .searchBox {
   }
   .dropContainer {
+    select{
+      padding: 1em;
+    }
   }
 }
 

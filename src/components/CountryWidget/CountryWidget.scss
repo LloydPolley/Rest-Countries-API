@@ -1,8 +1,8 @@
 .countryWidget{
-    margin: 7% auto;
     overflow: hidden;
     border-radius: 10px;
     width: 80%;
+    margin: 5% auto;
     
     a{
         text-decoration: none;
@@ -27,9 +27,8 @@
         flex-wrap: wrap;
     }
     .countryWidget{
-        margin: 5% auto;
         width: 45%;
-
+        margin: 2.5%;
         &__image{
             height: 180px;
             object-fit: scale-down;
@@ -42,11 +41,10 @@
 }
 @media(min-width: 1000px){
     .countryWidgetContainer{
-        display: flex;
-        flex-wrap: wrap;
+     
     }
     .countryWidget{
-        margin: 5% auto;
         width: 23%;
+        margin: 1%;
     }
 }
