@@ -39,17 +39,18 @@ $lightModeText: hsl(200, 15%, 8%);
         color: $lightModeText;
     }
 
-    .elements{
+    .element{
         background-color: white;
         box-shadow: 0px 0px 17px -6px rgba(0,0,0,0.75);
     }
     input, select, option{
         border: none;
-        background-color: $lightModeElements;
+        background-color: white;
         border-radius: 5px;
         color: $lightModeText;
         padding: 1em;
         box-sizing: border-box;
+        box-shadow: 0px 0px 10px -6px rgba(0,0,0,0.75);
 
         &::placeholder{
             color: $lightModeText;
