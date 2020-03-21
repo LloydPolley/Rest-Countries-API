@@ -8,16 +8,10 @@ const Country = props => {
   // const data = props.location.state;
   const [countryData, setCountryData] = useState("");
   const [borderState, setBorderState] = useState([]);
-  const [change, setChange] = useState(false);
 
   useEffect(() => {
     loadCountryData(props.match.params.id);
-  }, []);
-
-  useEffect(() => {
-    loadCountryData(props.match.params.id);
-    setChange(false);
-  }, [change]);
+  }, [props.match.params.id]);
 
   //Init load
   const loadCountryData = input => {
@@ -88,7 +82,6 @@ const Country = props => {
                     key={border.name}
                     onClick={() => {
                       setBorderState([]);
-                      setChange(true);
                     }}
                     to={{
                       pathname: `/country/${border.name}`,
