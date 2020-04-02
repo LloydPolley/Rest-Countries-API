@@ -1,50 +1,74 @@
-.countryWidget{
+.countryWidget {
+  overflow: hidden;
+  border-radius: 10px;
+  width: 80%;
+  margin: 5% auto;
+
+  opacity: 0;
+  // transform: translateY(10%);
+  animation: loadAnimation .5s ease-in .5s forwards;
+
+  // &:nth-child(1){
+  //   animation: loadAnimation .5s ease-in .8s forwards;
+  // }
+  // &:nth-child(2){
+  //   animation: loadAnimation .5s ease-in 1s forwards;
+  // }
+  // &:nth-child(3){
+  //   animation: loadAnimation .5s ease-in 1.2s forwards;
+  // }
+  // &:nth-child(4){
+  //   animation: loadAnimation .5s ease-in 1.4s forwards;
+  // }
+
+  a {
+    text-decoration: none;
+  }
+  &__image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
     overflow: hidden;
-    border-radius: 10px;
-    width: 80%;
-    margin: 5% auto;
-    
-    a{
-        text-decoration: none;
+    img {
+      width: 100%;
     }
-    &__image{
+  }
+  &__data {
+    padding: 1em;
+  }
+}
+
+@media (min-width: 700px) {
+  .countryWidgetContainer {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .countryWidget {
+    width: 45%;
+    margin: 2.5%;
+    &__image {
+      height: 180px;
+      object-fit: scale-down;
+
+      img {
         width: 100%;
-        display: flex;
-        justify-content: center;
-        overflow: hidden;
-        img{
-            width: 100%;
-        }
+        height: 100%;
+      }
     }
-    &__data{
-        padding: 1em;
-    }
+  }
+}
+@media (min-width: 1000px) {
+  .countryWidgetContainer {
+  }
+  .countryWidget {
+    width: 23%;
+    margin: 1%;
+  }
 }
 
-@media(min-width: 700px){
-    .countryWidgetContainer{
-        display: flex;
-        flex-wrap: wrap;
-    }
-    .countryWidget{
-        width: 45%;
-        margin: 2.5%;
-        &__image{
-            height: 180px;
-            object-fit: scale-down;
-
-            img{
-                width: 100%;
-            }
-        }
-    }
-}
-@media(min-width: 1000px){
-    .countryWidgetContainer{
-     
-    }
-    .countryWidget{
-        width: 23%;
-        margin: 1%;
-    }
+@keyframes loadAnimation {
+  100% {
+    opacity: 1;
+    // transform: translateY(0%);
+  }
 }

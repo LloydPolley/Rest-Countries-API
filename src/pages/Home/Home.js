@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
-
 import Search from "../../components/Search/Search";
-
 import { regionFetch, fetchAll, searchFetch } from "../../data/rest";
-
 import CountryWidget from "../../components/CountryWidget/CountryWidget";
+import Loading from '../../components/Loading/Loading';
 
 const Home = () => {
   //Loaded countries
   const [countries, setCountries] = useState([]);
+  const [pagCountries, setPagCountries] = useState([]);
+
   useEffect(() => {
     fetchAllCountries();
   }, []);
+
+  // useEffect(()=>{
+  //   pagination();
+  // }, [countries])
 
 
   //Init load
@@ -49,11 +53,14 @@ const Home = () => {
 
   // const pagination = () => {
   //   if (countries.length > 10) {
-  //     let page = countries.slice(pageNumber - 10, pageNumber);
-  //     setNextPage(nextPage.concat(page));
-  //     setPageNumber(pageNumber + 10);
+  //     let page = countries.slice(0, 10);
+  //     setPagCountries(page);
+  //     console.log('pag', page);
+  //     console.log(pagCountries)
+  //     // setNextPage(nextPage.concat(page));
+  //     // setPageNumber(pageNumber + 10);
   //   }else{
-  //     setNextPage(countries);
+  //     // setNextPage(countries);
   //   }
   // };
 
@@ -66,7 +73,7 @@ const Home = () => {
       />
       <div className="countryWidgetContainer">
         {!Array.isArray(countries) ? (
-          <h3 className="LoadingIcon">Loading</h3>
+          <Loading/>
         ) : (
           countries.map(country => {
             return <CountryWidget key={country.name} data={country}/>;
