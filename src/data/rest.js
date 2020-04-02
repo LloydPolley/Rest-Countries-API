@@ -30,12 +30,11 @@ export const searchFetch = async searchValue => {
     response = await fetch(
       `https://restcountries.eu/rest/v2/name/${searchValue}`
     );
-    
-  }else{
+  } else {
     response = await fetch(`https://restcountries.eu/rest/v2/all`);
   }
   let data = await response.json();
-    return data;
+  return data;
 };
 
 export const borderFetch = async (...args) => {
@@ -55,5 +54,9 @@ export const borderFetch = async (...args) => {
 };
 
 export const formatNumber = input => {
-  return input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  try {
+    return input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  } catch(e){
+    console.log('no number')
+  }
 };
