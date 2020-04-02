@@ -9,14 +9,20 @@ const Home = () => {
   const [countries, setCountries] = useState([]);
   const [pagCountries, setPagCountries] = useState([]);
 
+
+  const [pageNo, setPageNo] = useState(10);
+
   useEffect(() => {
     fetchAllCountries();
+    paginationInit();
   }, []);
 
-  // useEffect(()=>{
-  //   pagination();
-  // }, [countries])
-
+  useEffect(()=>{
+    setPageNo(10);
+    setPagCountries([]);
+    paginationInit();
+    console.log('new search reset');
+  }, [countries])
 
   //Init load
   const fetchAllCountries = () => {
@@ -51,18 +57,22 @@ const Home = () => {
     );
   };
 
-  // const pagination = () => {
-  //   if (countries.length > 10) {
-  //     let page = countries.slice(0, 10);
-  //     setPagCountries(page);
-  //     console.log('pag', page);
-  //     console.log(pagCountries)
-  //     // setNextPage(nextPage.concat(page));
-  //     // setPageNumber(pageNumber + 10);
-  //   }else{
-  //     // setNextPage(countries);
-  //   }
-  // };
+  const paginationInit = () => {
+    if (countries.length > 10) {
+      let page = countries.slice(0, 10);
+      setPagCountries(page);
+    }else{
+      setPagCountries(countries);
+    }
+  };
+
+  const loadMore = () => {
+    //increase pageNo by 10
+    setPageNo(pageNo + 10);
+    //Add ten to pagCountries
+    setPagCountries(pagCountries.concat(countries.splice(pageNo, pageNo+10)))
+    console.log(pagCountries);
+  }
 
   return (
     <div className="homeContainer">
@@ -72,14 +82,16 @@ const Home = () => {
         fetch={regionSelect}
       />
       <div className="countryWidgetContainer">
-        {!Array.isArray(countries) ? (
+        {!Array.isArray(pagCountries) ? (
           <Loading/>
         ) : (
-          countries.map(country => {
+          pagCountries.map(country => {
             return <CountryWidget key={country.name} data={country}/>;
           })
         )}
       </div>
+                <button onClick={loadMore}>Load more</button>
+
     </div>
   );
 };
