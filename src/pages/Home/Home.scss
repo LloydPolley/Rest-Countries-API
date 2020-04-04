@@ -1,7 +1,14 @@
-.homeContainer{
-    max-width: 1300px;
-    margin: 0 auto;
+.homeContainer {
+  max-width: 1300px;
+  margin: 0 auto;
 }
-.LoadingIcon{
+.LoadingIcon {
+  text-align: center;
+}
+.loadMore {
     text-align: center;
+    margin: 2em auto;
+  &__button {
+    
+  }
 }
