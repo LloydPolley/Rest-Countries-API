@@ -11,6 +11,8 @@ const Country = props => {
 
   useEffect(() => {
     loadCountryData(props.match.params.id);
+    console.log(props.match, 'props match')
+    console.log(window.location.href)
   }, [props.match.params.id]);
 
   //Init load
