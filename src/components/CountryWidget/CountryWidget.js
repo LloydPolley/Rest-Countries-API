@@ -6,12 +6,16 @@ import { Link } from "react-router-dom";
 import "./CountryWidget.scss";
 
 const CountryWidget = ({ data }) => {
+  console.log(data.alpha3Code, 'data')
   return (
     <div key={data.name} className="countryWidget element">
       <div className="countryWidget__image">
-        <Link to={{ pathname: `/country/${data.name}`, state: data }}>
+        <Link to={`/country/${data.name}`}>
           <img src={data.flag} />
         </Link>
+        {/* <Link to={{ pathname: `/country/${data.name}`, state: data }}>
+          <img src={data.flag} />
+        </Link> */}
       </div>
       <div className="countryWidget__data">
         <Link to={{ pathname: `/country/${data.name}`, state: data }}>

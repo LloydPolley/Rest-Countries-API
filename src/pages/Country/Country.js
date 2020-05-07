@@ -9,8 +9,6 @@ const Country = props => {
   const [countryData, setCountryData] = useState("");
   const [borderState, setBorderState] = useState([]);
 
-  console.log(props.match, 'props match')
-    console.log(window.location.href)
 
   useEffect(() => {
     loadCountryData(props.match.params.id);
