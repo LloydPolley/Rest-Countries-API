@@ -10,7 +10,7 @@ const CountryWidget = ({ data }) => {
   return (
     <div key={data.name} className="countryWidget element">
       <div className="countryWidget__image">
-        <Link to={`/country/${data.name}`}>
+        <Link to={`/${data.name}`}>
           <img src={data.flag} />
         </Link>
         {/* <Link to={{ pathname: `/country/${data.name}`, state: data }}>
@@ -18,9 +18,12 @@ const CountryWidget = ({ data }) => {
         </Link> */}
       </div>
       <div className="countryWidget__data">
-        <Link to={{ pathname: `/country/${data.name}`, state: data }}>
+        <Link to={`/${data.name}`}>
           <h2>{data.name}</h2>
         </Link>
+        {/* <Link to={{ pathname: `/${data.name}`, state: data }}>
+          <h2>{data.name}</h2>
+        </Link> */}
         <p>
           Population: <span>{formatNumber(data.population)}</span>
         </p>

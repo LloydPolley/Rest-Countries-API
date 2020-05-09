@@ -10,6 +10,10 @@
     margin: 2em auto;
     cursor: pointer;
   &__button {
-    
+    padding: 1em;
+    border: 1px solid white;
+    max-width: 100px;
+    margin: 0 auto;
+    border-radius: 3px;
   }
 }

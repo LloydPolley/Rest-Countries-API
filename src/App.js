@@ -15,7 +15,7 @@ function App() {
         <Header />
         <Switch>
           <Route path="/" component={Home} exact={true}/>
-          <Route path="/country/:id" component={Country} />
+          <Route path="/:id" component={Country} />
         </Switch>
       </HashRouter>
     </div>
