@@ -12,7 +12,7 @@ const Country = props => {
 
   useEffect(() => {
     loadCountryData(props.match.params.id);
-    
+    // console.log(props, 'props');
   }, [props.match.params.id]);
 
   //Init load
@@ -78,23 +78,25 @@ const Country = props => {
             {borderState === undefined ? (
               <p>No borders</p>
             ) : (
-              borderState.map(border => {
-                return (
-                  <Link
-                    key={border.name}
-                    onClick={() => {
-                      setBorderState([]);
-                    }}
-                    to={{
-                      pathname: `/country/${border.name}`,
-                      state: border
-                    }}
-                  >
-                    <p className="borderButton element">{border.name}</p>
-                  </Link>
-                );
-              })
-            )}
+                borderState.map(border => {
+                  return (
+                    <div className="borderItems" key={border.name}>
+                      <Link
+                        onClick={() => {
+                          setBorderState([]);
+                          // console.log(border.name, 'click')
+                        }}
+                        to={{
+                          pathname: `/${border.name}`,
+                          state: border
+                        }}
+                      >
+                        <p className="borderButton element">{border.name}</p>
+                      </Link>
+                    </div>
+                  );
+                })
+              )}
           </div>
         </div>
       </div>

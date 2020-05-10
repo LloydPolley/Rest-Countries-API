@@ -82,12 +82,13 @@
           flex-direction: row;
           flex-wrap: wrap;
 
-          a{
-            min-width: 150px;
-            flex: 1;
-          }
-          p{
-            margin: 3%;
+          .borderItems{
+            width: 47%;
+            margin: .3em;
+            p{
+              margin: 0;
+              height: 100%;
+            }
           }
         }
       }

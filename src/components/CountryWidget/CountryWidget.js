@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import "./CountryWidget.scss";
 
 const CountryWidget = ({ data }) => {
-  console.log(data.alpha3Code, 'data')
+  // console.log(data.alpha3Code, 'data')
   return (
     <div key={data.name} className="countryWidget element">
       <div className="countryWidget__image">
