@@ -5,7 +5,7 @@
   margin: 5% auto;
 
   opacity: 0;
-  transform: translateY(10%);
+  // transform: translateY(10%);
   animation: loadAnimation .5s ease-in-out .5s forwards;
 
   &:nth-child(4n + 1){
@@ -71,6 +71,6 @@
 @keyframes loadAnimation {
   100% {
     opacity: 1;
-    transform: translateY(0%);
+    // transform: translateY(0%);
   }
 }
