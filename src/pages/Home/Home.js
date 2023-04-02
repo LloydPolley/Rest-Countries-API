@@ -84,25 +84,25 @@ const Home = () => {
 
   return (
     <div className="homeContainer">
-      <Search
+      {/* <Search
         search={searchFunction}
         reset={fetchAllCountries}
         fetch={regionSelect}
-      />
+      /> */}
       <div className="countryWidgetContainer">
-        {!Array.isArray(pagCountries) ? (
+        {/* {!Array.isArray(pagCountries) ? (
           <Loading />
         ) : (
           pagCountries.map((country) => {
             return <CountryWidget key={country.name} data={country} />;
           })
-        )}
+        )} */}
       </div>
-      <div className="loadMore">
+      {/* <div className="loadMore">
         <p className="loadMore__button" onClick={loadMore} ref={loadMoreRef}>
           Load more
         </p>
-      </div>
+      </div> */}
     </div>
   );
 };

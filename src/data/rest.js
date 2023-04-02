@@ -1,10 +1,10 @@
 export const fetchAll = async () => {
-  let response = await fetch(`https://restcountries.eu/rest/v2/all`);
+  let response = await fetch(`https://restcountries.com/v3.1/all`);
   let data = await response.json();
   return data;
 };
 
-export const fetchCountry = async country => {
+export const fetchCountry = async (country) => {
   let response = await fetch(
     `https://restcountries.eu/rest/v2/name/${country}`
   );
@@ -12,7 +12,7 @@ export const fetchCountry = async country => {
   return data;
 };
 
-export const regionFetch = async region => {
+export const regionFetch = async (region) => {
   let response;
   if (region === "All") {
     response = await fetch(`https://restcountries.eu/rest/v2/all`);
@@ -23,7 +23,7 @@ export const regionFetch = async region => {
   return data;
 };
 
-export const searchFetch = async searchValue => {
+export const searchFetch = async (searchValue) => {
   console.log(searchValue, "searchvalue");
   let response;
   if (searchValue !== "") {
@@ -39,10 +39,7 @@ export const searchFetch = async searchValue => {
 
 export const borderFetch = async (...args) => {
   if (args[0].length !== 0) {
-    let borderString = args
-      .toString()
-      .toLowerCase()
-      .replace(/,/g, ";");
+    let borderString = args.toString().toLowerCase().replace(/,/g, ";");
     let response = await fetch(
       `https://restcountries.eu/rest/v2/alpha?codes=${borderString}`
     );
@@ -53,10 +50,10 @@ export const borderFetch = async (...args) => {
   }
 };
 
-export const formatNumber = input => {
+export const formatNumber = (input) => {
   try {
     return input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  } catch(e){
-    console.log('no number')
+  } catch (e) {
+    console.log("no number");
   }
 };
