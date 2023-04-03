@@ -10,7 +10,7 @@
       padding: 1em;
     }
   }
-  .countryContainer {
+  .country-container {
     width: 80%;
     margin: 0 auto;
     img {
@@ -18,7 +18,7 @@
     }
     &__border {
       .borderCountries {
-        a{
+        a {
           text-decoration: none;
         }
         p {
@@ -47,31 +47,30 @@
         padding: 1em;
       }
     }
-    .countryContainer {
+    .country-container {
       width: 100%;
       display: flex;
       margin: 0 auto;
       // justify-content: space-between;
-      &__image{
+      &__image {
         width: 45%;
         margin-right: 5%;
       }
-      &__right{
+      &__right {
         width: 50%;
-        h1{
+        h1 {
           margin-top: 0;
           margin-bottom: 10px;
         }
       }
-     
 
       &__data {
         display: flex;
         flex-direction: column;
-        .top{
+        .top {
           display: flex;
 
-          >div{
+          > div {
             width: 50%;
           }
         }
@@ -82,10 +81,10 @@
           flex-direction: row;
           flex-wrap: wrap;
 
-          .borderItems{
+          .borderItems {
             width: 47%;
-            margin: .3em;
-            p{
+            margin: 0.3em;
+            p {
               margin: 0;
               height: 100%;
             }

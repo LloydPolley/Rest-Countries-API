@@ -1,5 +1,4 @@
-@import './pages/Home/Home.scss';
-
+@import "./pages/Home/Home.scss";
 
 $darkModeElements: hsl(209, 23%, 22%);
 $darkModeBackground: hsl(207, 26%, 17%);
@@ -9,55 +8,91 @@ $lightModeElements: hsl(0, 0%, 100%);
 $lightModeBackground: hsl(0, 0%, 98%);
 $lightModeText: hsl(200, 15%, 8%);
 
-input, select{
-    font-size: 16px;
+input,
+select {
+  font-size: 16px;
 }
 
-.darkMode{
-    background-color: $darkModeBackground;
+.darkMode {
+  background-color: $darkModeBackground;
 
-    h1,h2,h3,p{
-        color: $darkModeText;
-    }
+  h1,
+  h2,
+  h3,
+  p {
+    color: $darkModeText;
+  }
 
-    .element{
-        background-color: $darkModeElements;
-    }
-    input, select, option{
-        border: none;
-        background-color: $darkModeElements;
-        border-radius: 5px;
-        color: $darkModeText;
-        padding: 1em;
-        box-sizing: border-box;
+  .element {
+    background-color: $darkModeElements;
+  }
+  input,
+  select,
+  option {
+    border: none;
+    background-color: $darkModeElements;
+    border-radius: 5px;
+    color: $darkModeText;
+    padding: 1em;
+    box-sizing: border-box;
 
-        &::placeholder{
-            color: $darkModeText;
-        }
+    &::placeholder {
+      color: $darkModeText;
     }
+  }
 }
-.lightMode{
-    background-color: $lightModeBackground;
+.lightMode {
+  background-color: $lightModeBackground;
 
-    h1,h2,h3,p{
-        color: $lightModeText;
-    }
+  h1,
+  h2,
+  h3,
+  p {
+    color: $lightModeText;
+  }
 
-    .element{
-        background-color: white;
-        box-shadow: 0px 0px 17px -6px rgba(0,0,0,0.75);
-    }
-    input, select, option{
-        border: none;
-        background-color: white;
-        border-radius: 5px;
-        color: $lightModeText;
-        padding: 1em;
-        box-sizing: border-box;
-        box-shadow: 0px 0px 10px -6px rgba(0,0,0,0.75);
+  .element {
+    background-color: white;
+    box-shadow: 0px 0px 17px -6px rgba(0, 0, 0, 0.75);
+  }
+  input,
+  select,
+  option {
+    border: none;
+    background-color: white;
+    border-radius: 5px;
+    color: $lightModeText;
+    padding: 1em;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px -6px rgba(0, 0, 0, 0.75);
 
-        &::placeholder{
-            color: $lightModeText;
-        }
+    &::placeholder {
+      color: $lightModeText;
     }
+  }
+}
+
+.underline-swipe {
+  display: inline-block;
+  position: relative;
+
+  &:after {
+    content: "";
+    width: 0px;
+    height: 2px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    transition: 300ms;
+  }
+
+  &:hover:after {
+    width: 100%;
+  }
+
+  &:not(:hover):after {
+    right: 0;
+    left: auto;
+  }
 }

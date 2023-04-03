@@ -4,11 +4,10 @@ import "./Country.scss";
 import { borderFetch, formatNumber, fetchCountry } from "../../data/rest";
 import { Link } from "react-router-dom";
 
-const Country = props => {
+const Country = (props) => {
   // const data = props.location.state;
   const [countryData, setCountryData] = useState("");
   const [borderState, setBorderState] = useState([]);
-
 
   useEffect(() => {
     loadCountryData(props.match.params.id);
@@ -16,29 +15,29 @@ const Country = props => {
   }, [props.match.params.id]);
 
   //Init load
-  const loadCountryData = input => {
+  const loadCountryData = (input) => {
     fetchCountry(input)
-      .then(data => {
+      .then((data) => {
         return data;
       })
-      .then(data => {
+      .then((data) => {
         setCountryData(data[0]);
         return data[0];
       })
-      .then(data => {
-        borderFetch(data.borders).then(data => {
+      .then((data) => {
+        borderFetch(data.borders).then((data) => {
           setBorderState(data);
         });
       });
   };
 
   const renderPage = () => (
-    <div className="countryContainer">
-      <div className="countryContainer__image">
+    <div className="country-container">
+      <div className="country-container__image">
         <img src={countryData.flag} />
       </div>
-      <div className="countryContainer__right">
-        <div className="countryContainer__data">
+      <div className="country-container__right">
+        <div className="country-container__data">
           <h1>{countryData.name}</h1>
 
           <div className="top">
@@ -72,31 +71,31 @@ const Country = props => {
             </div>
           </div>
         </div>
-        <div className="countryContainer__border">
+        <div className="country-container__border">
           <h3>Border Countries</h3>
           <div className="borderCountries">
             {borderState === undefined ? (
               <p>No borders</p>
             ) : (
-                borderState.map(border => {
-                  return (
-                    <div className="borderItems" key={border.name}>
-                      <Link
-                        onClick={() => {
-                          setBorderState([]);
-                          // console.log(border.name, 'click')
-                        }}
-                        to={{
-                          pathname: `/${border.name}`,
-                          state: border
-                        }}
-                      >
-                        <p className="borderButton element">{border.name}</p>
-                      </Link>
-                    </div>
-                  );
-                })
-              )}
+              borderState.map((border) => {
+                return (
+                  <div className="borderItems" key={border.name}>
+                    <Link
+                      onClick={() => {
+                        setBorderState([]);
+                        // console.log(border.name, 'click')
+                      }}
+                      to={{
+                        pathname: `/${border.name}`,
+                        state: border,
+                      }}
+                    >
+                      <p className="borderButton element">{border.name}</p>
+                    </Link>
+                  </div>
+                );
+              })
+            )}
           </div>
         </div>
       </div>

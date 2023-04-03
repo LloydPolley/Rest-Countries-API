@@ -3,28 +3,14 @@ import Search from "../../components/Search/Search";
 import { regionFetch, fetchAll, searchFetch } from "../../data/rest";
 import CountryWidget from "../../components/CountryWidget/CountryWidget";
 import Loading from "../../components/Loading/Loading";
+import { useQuery } from "react-query";
 
 const Home = () => {
   //Loaded countries
   const [countries, setCountries] = useState([]);
   const [pagCountries, setPagCountries] = useState([]);
-
   const loadMoreRef = useRef(null);
-
   const [pageNo, setPageNo] = useState(12);
-
-  useEffect(() => {
-    // window.addEventListener('scroll', ()=>{
-    //   console.log(loadMoreRef.current.getBoundingClientRect().y, window.innerHeight)
-    //   if(loadMoreRef.current.getBoundingClientRect().y < window.innerHeight){
-    //     s
-    //     loadMore();
-    //     // console.log('run')
-    //   }
-    // })
-    fetchAllCountries();
-    paginationInit();
-  }, []);
 
   useEffect(() => {
     setPageNo(12);
@@ -32,16 +18,12 @@ const Home = () => {
     paginationInit();
   }, [countries]);
 
-  //Init load
-  const fetchAllCountries = () => {
-    fetchAll()
-      .then((data) => {
-        return data;
-      })
-      .then((data) => {
-        setCountries(data);
-      });
-  };
+  const { data, status } = useQuery("fixtures", fetchAll);
+
+  if (data) {
+    console.log("data", data[0]);
+  }
+
   //Runs on search
   const searchFunction = (input) => {
     const searchedFound = searchFetch(input)
@@ -52,6 +34,7 @@ const Home = () => {
         setCountries(data);
       });
   };
+
   //Runs on region select
   const regionSelect = (region) => {
     setCountries(
@@ -83,23 +66,23 @@ const Home = () => {
   };
 
   return (
-    <div className="homeContainer">
+    <div className="home-container">
       {/* <Search
         search={searchFunction}
         reset={fetchAllCountries}
         fetch={regionSelect}
       /> */}
-      <div className="countryWidgetContainer">
-        {/* {!Array.isArray(pagCountries) ? (
+      <div className="countries">
+        {!data ? (
           <Loading />
         ) : (
-          pagCountries.map((country) => {
-            return <CountryWidget key={country.name} data={country} />;
+          data?.map((country) => {
+            return <CountryWidget key={country?.name?.common} data={country} />;
           })
-        )} */}
+        )}
       </div>
-      {/* <div className="loadMore">
-        <p className="loadMore__button" onClick={loadMore} ref={loadMoreRef}>
+      {/* <div className="load-more">
+        <p className="load-more__button" onClick={loadMore} ref={loadMoreRef}>
           Load more
         </p>
       </div> */}
