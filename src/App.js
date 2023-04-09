@@ -15,13 +15,13 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="App">
-        <HashRouter>
+        <BrowserRouter>
           <Header />
           <Switch>
             <Route path="/" component={Home} exact={true} />
             <Route path="/:id" component={Country} />
           </Switch>
-        </HashRouter>
+        </BrowserRouter>
       </div>
     </QueryClientProvider>
   );

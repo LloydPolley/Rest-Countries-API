@@ -1,12 +1,36 @@
-.header-container {
-  .header {
-    max-width: 1300px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 10px 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    box-sizing: border-box;
+.header {
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-sizing: border-box;
+
+  &__home {
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    margin: 1em 0;
+    font-size: 5vw;
   }
+
+  &__mode {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+}
+
+@media (min-width: 500px) {
+  .header {
+    &__home {
+      font-size: 25px;
+    }
+  }
+}
+
+.white-icon {
+  color: white;
 }

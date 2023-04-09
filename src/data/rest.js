@@ -1,15 +1,8 @@
-export const fetchAll = async () => {
-  let response = await fetch(`https://restcountries.com/v3.1/all`);
-  let data = await response.json();
-  return data;
-};
-
-export const fetchCountry = async (country) => {
-  let response = await fetch(
-    `https://restcountries.eu/rest/v2/name/${country}`
-  );
-  let data = await response.json();
-  return data;
+export const fetchCountry = async (name) => {
+  console.log("name", name?.queryKey[1]);
+  const url = !name?.queryKey[1] ? "all" : `name/${name?.queryKey[1]}`;
+  const response = await fetch(`https://restcountries.com/v3.1/${url}`);
+  return response.json();
 };
 
 export const regionFetch = async (region) => {

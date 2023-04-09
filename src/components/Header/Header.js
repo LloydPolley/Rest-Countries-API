@@ -1,16 +1,22 @@
 import React from "react";
-import "./Header.scss";
+import style from "./Header.scss";
 import { toggleMode } from "../../mode/mode";
 import { Link } from "react-router-dom";
+import { MdDarkMode } from "react-icons/md";
+import classNames from "classnames/bind";
+
+const cx = classNames.bind(style);
 
 const Header = () => {
   return (
     <div className="header-container element">
       <div className="header">
-        <Link to="/">
-          <p>Where in the world?</p>
+        <Link className="header__home" to={"/"}>
+          Where in the world?
         </Link>
-        <p onClick={toggleMode}>Dark Mode</p>
+        <div className="header__mode" onClick={toggleMode}>
+          <MdDarkMode />
+        </div>
       </div>
     </div>
   );

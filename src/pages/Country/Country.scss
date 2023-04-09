@@ -1,96 +1,37 @@
-.countryPage {
+.country-page {
   max-width: 1300px;
-  margin: 0 auto;
-  .goBackContainer {
-    width: 80%;
-    margin: 3% auto;
-    p {
-      box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.45);
-      display: inline-block;
-      padding: 1em;
-    }
+  margin: 10px;
+}
+
+.back {
+  p {
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    padding: 1em;
   }
-  .country-container {
-    width: 80%;
-    margin: 0 auto;
-    img {
-      max-width: 100%;
-    }
-    &__border {
-      .borderCountries {
-        a {
-          text-decoration: none;
-        }
-        p {
-          border-radius: 3px;
-          box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.45);
-          padding: 0.5em;
-          box-sizing: border-box;
-          text-align: center;
-          margin-right: 3%;
-        }
+}
+
+.country-container {
+  margin: 0 auto;
+  img {
+    max-width: 100%;
+  }
+  &__border {
+    .border-countries {
+      a {
+        text-decoration: none;
+      }
+      p {
+        border-radius: 3px;
+        box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.45);
+        padding: 0.5em;
+        box-sizing: border-box;
+        text-align: center;
+        margin-right: 3%;
       }
     }
   }
 }
 
 @media (min-width: 700px) {
-  .countryPage {
-    max-width: 1300px;
-    margin: 0 auto;
-    .goBackContainer {
-      width: 100%;
-      margin: 3% auto;
-      p {
-        box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.45);
-        display: inline-block;
-        padding: 1em;
-      }
-    }
-    .country-container {
-      width: 100%;
-      display: flex;
-      margin: 0 auto;
-      // justify-content: space-between;
-      &__image {
-        width: 45%;
-        margin-right: 5%;
-      }
-      &__right {
-        width: 50%;
-        h1 {
-          margin-top: 0;
-          margin-bottom: 10px;
-        }
-      }
-
-      &__data {
-        display: flex;
-        flex-direction: column;
-        .top {
-          display: flex;
-
-          > div {
-            width: 50%;
-          }
-        }
-      }
-      &__border {
-        .borderCountries {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-
-          .borderItems {
-            width: 47%;
-            margin: 0.3em;
-            p {
-              margin: 0;
-              height: 100%;
-            }
-          }
-        }
-      }
-    }
-  }
 }

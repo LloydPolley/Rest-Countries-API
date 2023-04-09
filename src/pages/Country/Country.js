@@ -3,77 +3,97 @@ import "./Country.scss";
 
 import { borderFetch, formatNumber, fetchCountry } from "../../data/rest";
 import { Link } from "react-router-dom";
+import { useQuery } from "react-query";
 
 const Country = (props) => {
   // const data = props.location.state;
   const [countryData, setCountryData] = useState("");
   const [borderState, setBorderState] = useState([]);
-
-  useEffect(() => {
-    loadCountryData(props.match.params.id);
-    // console.log(props, 'props');
-  }, [props.match.params.id]);
+  console.log("props", props);
+  if (false) {
+  }
+  const { data, status } = useQuery(
+    `fetchCountry${props.match.params.id.toLowerCase()}`,
+    () => fetchCountry(props.match.params.id.toLowerCase())
+  );
 
   //Init load
-  const loadCountryData = (input) => {
-    fetchCountry(input)
-      .then((data) => {
-        return data;
-      })
-      .then((data) => {
-        setCountryData(data[0]);
-        return data[0];
-      })
-      .then((data) => {
-        borderFetch(data.borders).then((data) => {
-          setBorderState(data);
-        });
-      });
-  };
+  // const loadCountryData = (input) => {
+  //   fetchCountry(input)
+  //     .then((data) => {
+  //       return data;
+  //     })
+  //     .then((data) => {
+  //       setCountryData(data[0]);
+  //       return data[0];
+  //     })
+  //     .then((data) => {
+  //       borderFetch(data.borders).then((data) => {
+  //         setBorderState(data);
+  //       });
+  //     });
+  // };
+  if (!data) {
+    return null;
+  }
+
+  const {
+    name: { official },
+    population,
+    region,
+    subregion,
+    capital,
+    tld,
+    flags,
+  } = data;
+
+  console.log(data);
 
   const renderPage = () => (
-    <div className="country-container">
-      <div className="country-container__image">
-        <img src={countryData.flag} />
-      </div>
-      <div className="country-container__right">
-        <div className="country-container__data">
-          <h1>{countryData.name}</h1>
+    <>
+      <div className="country-container">
+        <Link className="back" to="/">
+          <p className="element">Back</p>
+        </Link>
+        <div className="country-container__image">
+          <img src={flags.png} />
+        </div>
+        <div className="country-container__right">
+          <div className="country-container__data">
+            <h1>{official}</h1>
 
-          <div className="top">
-            <div className="top__left">
-              <p>
-                Native Name: <span>{countryData.nativeName}</span>
-              </p>
-              <p>
-                Population: <span>{formatNumber(countryData.population)}</span>
-              </p>
-              <p>
-                Region: <span>{countryData.region}</span>
-              </p>
-              <p>
-                Sub Region: <span>{countryData.subregion}</span>
-              </p>
-              <p>
-                Capital: <span>{countryData.capital}</span>
-              </p>
-            </div>
-            <div className="top__right">
-              <p>
-                Top Level Domain: <span>{countryData.topLevelDomain}</span>
-              </p>
-              <p>
+            <div className="top">
+              <div className="top__left">
+                <p>
+                  Native Name: <span>{official}</span>
+                </p>
+                <p>
+                  Population: <span>{formatNumber(population)}</span>
+                </p>
+                <p>
+                  Region: <span>{region}</span>
+                </p>
+                <p>
+                  Sub Region: <span>{subregion}</span>
+                </p>
+                <p>
+                  Capital: <span>{capital}</span>
+                </p>
+              </div>
+              <div className="top__right">
+                <p>{/* Top Level Domain: <span>{tld}</span> */}</p>
+                {/* <p>
                 Currencies: <span>{countryData.currencies[0].name}</span>
               </p>
               <p>
                 Languages: <span>{countryData.languages[0].nativeName}</span>
-              </p>
+              </p> */}
+              </div>
             </div>
           </div>
-        </div>
-        <div className="country-container__border">
+          {/* <div className="country-container__border">
           <h3>Border Countries</h3>
-          <div className="borderCountries">
+          <div className="border-countries">
             {borderState === undefined ? (
               <p>No borders</p>
             ) : (
@@ -97,19 +117,15 @@ const Country = (props) => {
               })
             )}
           </div>
+        </div> */}
         </div>
       </div>
-    </div>
+    </>
   );
 
   return (
-    <div className="countryPage">
-      <div className="goBackContainer">
-        <Link to="/">
-          <p className="element">Go back</p>
-        </Link>
-      </div>
-      {countryData === "" ? <h2>Loading</h2> : renderPage()}
+    <div className="country-page">
+      {!data ? <h2>Loading</h2> : renderPage()}
     </div>
   );
 };

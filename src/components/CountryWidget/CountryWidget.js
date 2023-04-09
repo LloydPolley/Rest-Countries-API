@@ -1,25 +1,33 @@
-import React, { useState } from "react";
-import { regionFetch, fetchAll, formatNumber } from "../../data/rest";
+import React, { useEffect, useState } from "react";
+import { regionFetch, formatNumber } from "../../data/rest";
+import { useInView } from "react-intersection-observer";
+import classNames from "classnames/bind";
 
 import { Link } from "react-router-dom";
 
-import "./CountryWidget.scss";
+import style from "./CountryWidget.scss";
+
+const cx = classNames.bind(style);
 
 const CountryWidget = ({ data }) => {
-  console.log(data, "data");
+  const { ref, inView } = useInView({
+    threshold: 0.3,
+    triggerOnce: true,
+  });
+
   return (
-    <div key={data.name.common} className="country element">
-      <div
-        className="country__image"
-        style={{ backgroundImage: `url("${data.flags.png}")` }}
-      >
-        {/* <Link to={`/${data.name.common}`}>
-          <img src={data.flags.png} />
-        </Link> */}
-        {/* <Link to={{ pathname: `/country/${data.name}`, state: data }}>
-          <img src={data.flag} />
-        </Link> */}
-      </div>
+    <div
+      key={data.name.common}
+      className={cx("country element", inView && "scroll-in")}
+      ref={ref}
+    >
+      <Link to={`/${data.name.common}`}>
+        <div
+          className="country__image"
+          style={{ backgroundImage: `url("${data.flags.png}")` }}
+        ></div>
+      </Link>
+
       <div className="country__data">
         <Link to={`/${data.name.common}`}>
           <h2 className="underline-swipe">{data.name.common}</h2>

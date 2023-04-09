@@ -1,28 +1,35 @@
 import React, { useState, useEffect } from "react";
 import "./Search.scss";
 
-const Search = props => {
+const Search = ({ refetch, setSearchValue, searchValue }) => {
   const [dropValue, setDropValue] = useState("All");
-  const [searchValue, setSearchValue] = useState("");
+  const [enterValue, setEnterValue] = useState("");
 
-  useEffect(() => {
-    props.fetch(dropValue);
-  }, [dropValue]);
+  // useEffect(() => {
+  //   props.fetch(dropValue);
+  // }, [dropValue]);
 
   return (
     <div className="searchContainer">
       <div className="searchBox">
-        <input
-          placeholder="Search for country..."
-          value={searchValue}
-          onChange={e => {
-            props.search(e.target.value);
-            setSearchValue(e.target.value);
-            if (dropValue !== "All") {
-              setDropValue("All");
-            }
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            console.log("submit");
+            setSearchValue(enterValue);
+            console.log(e.target.value);
+            // refetch(searchValue);
           }}
-        />
+        >
+          <input
+            placeholder="Search for country..."
+            // value={searchValue}
+            onChange={(e) => {
+              console.log("e", e.target.value);
+              setEnterValue(e.target.value);
+            }}
+          />
+        </form>
       </div>
       <div className="dropContainer">
         <select
@@ -30,7 +37,7 @@ const Search = props => {
           name="countries"
           className="element"
           value={dropValue}
-          onChange={e => {
+          onChange={(e) => {
             setDropValue(e.target.value);
             setSearchValue("");
             console.log("reset");

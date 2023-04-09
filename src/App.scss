@@ -13,9 +13,12 @@ select {
   font-size: 16px;
 }
 
-.darkMode {
+.dark-mode {
   background-color: $darkModeBackground;
 
+  svg {
+    color: white;
+  }
   h1,
   h2,
   h3,
@@ -41,7 +44,7 @@ select {
     }
   }
 }
-.lightMode {
+.light-mode {
   background-color: $lightModeBackground;
 
   h1,
