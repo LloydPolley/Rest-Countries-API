@@ -1,6 +1,6 @@
 @import "./pages/Home/Home.scss";
 
-$darkModeElements: hsl(209, 23%, 22%);
+$darkModeElements: #00000049;
 $darkModeBackground: hsl(207, 26%, 17%);
 $darkModeText: hsl(0, 0%, 98%);
 
@@ -8,13 +8,35 @@ $lightModeElements: hsl(0, 0%, 100%);
 $lightModeBackground: hsl(0, 0%, 98%);
 $lightModeText: hsl(200, 15%, 8%);
 
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 input,
 select {
   font-size: 16px;
 }
 
 .dark-mode {
-  background-color: $darkModeBackground;
+  // background-color: $darkModeBackground;
+  background-image: linear-gradient(
+    to right top,
+    #3c157c,
+    #3d1f6e,
+    #3d2660,
+    #3c2c53,
+    #3a3145
+  );
+  // background-image: linear-gradient(
+  //   to right top,
+  //   #18252c,
+  //   #1a272f,
+  //   #1c2931,
+  //   #1e2c34,
+  //   #202e37
+  // );
 
   svg {
     color: white;
@@ -31,13 +53,15 @@ select {
   }
   input,
   select,
-  option {
+  option,
+  button {
     border: none;
     background-color: $darkModeElements;
     border-radius: 5px;
     color: $darkModeText;
     padding: 1em;
     box-sizing: border-box;
+    font-size: 16px;
 
     &::placeholder {
       color: $darkModeText;

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
+import classNames from "classnames/bind";
 import { regionFetch, formatNumber } from "../../data/rest";
 import { useInView } from "react-intersection-observer";
-import classNames from "classnames/bind";
 
 import { Link } from "react-router-dom";
 
-import style from "./CountryWidget.scss";
+import style from "./CountryWidget.module.scss";
 
 const cx = classNames.bind(style);
 
@@ -18,17 +18,17 @@ const CountryWidget = ({ data }) => {
   return (
     <div
       key={data.name.common}
-      className={cx("country element", inView && "scroll-in")}
+      className={cx("country", "element", inView && "scroll-in")}
       ref={ref}
     >
       <Link to={`/${data.name.common}`}>
         <div
-          className="country__image"
+          className={cx("country__image")}
           style={{ backgroundImage: `url("${data.flags.png}")` }}
         ></div>
       </Link>
 
-      <div className="country__data">
+      <div className={cx("country__data")}>
         <Link to={`/${data.name.common}`}>
           <h2 className="underline-swipe">{data.name.common}</h2>
         </Link>

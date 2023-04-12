@@ -1,57 +1,59 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { MdSearch } from "react-icons/md";
+import { FaTrashAlt } from "react-icons/fa";
 import "./Search.scss";
 
-const Search = ({ refetch, setSearchValue, searchValue }) => {
+const Search = ({ setQueryValue }) => {
   const [dropValue, setDropValue] = useState("All");
   const [enterValue, setEnterValue] = useState("");
 
-  // useEffect(() => {
-  //   props.fetch(dropValue);
-  // }, [dropValue]);
+  console.log(window.location);
 
   return (
-    <div className="searchContainer">
-      <div className="searchBox">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            console.log("submit");
-            setSearchValue(enterValue);
-            console.log(e.target.value);
-            // refetch(searchValue);
-          }}
-        >
-          <input
-            placeholder="Search for country..."
-            // value={searchValue}
+    <form
+      className="search"
+      onSubmit={(e) => {
+        e.preventDefault();
+        setQueryValue(enterValue);
+      }}
+    >
+      {window.location.pathname !== "/" ? (
+        <Link to="/">
+          <button className="element">Back</button>
+        </Link>
+      ) : (
+        <>
+          <div className="search__box">
+            <MdSearch className="search__icon" />
+            <input
+              placeholder="Search"
+              onChange={(e) => {
+                console.log("e", e.target.value);
+                setEnterValue(e.target.value);
+              }}
+            />
+          </div>
+
+          <select
+            id="country-drop"
+            name="countries"
+            className="element"
             onChange={(e) => {
-              console.log("e", e.target.value);
-              setEnterValue(e.target.value);
+              setQueryValue(e.target.value);
+              setEnterValue("");
             }}
-          />
-        </form>
-      </div>
-      <div className="dropContainer">
-        <select
-          id="country-drop"
-          name="countries"
-          className="element"
-          value={dropValue}
-          onChange={(e) => {
-            setDropValue(e.target.value);
-            setSearchValue("");
-            console.log("reset");
-          }}
-        >
-          <option value="All">All</option>
-          <option value="Africa">Africa</option>
-          <option value="Americas">Americas</option>
-          <option value="Asia">Asia</option>
-          <option value="Europe">Europe</option>
-          <option value="Oceania">Oceania</option>
-        </select>
-      </div>
-    </div>
+          >
+            <option value="All">Region</option>
+            <option value="Africa">Africa</option>
+            <option value="Americas">Americas</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="Oceania">Oceania</option>
+          </select>
+        </>
+      )}
+    </form>
   );
 };
 
