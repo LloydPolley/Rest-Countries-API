@@ -19,7 +19,7 @@ select {
   font-size: 16px;
 }
 
-.dark-mode {
+body {
   // background-color: $darkModeBackground;
   background-image: linear-gradient(
     to right top,
@@ -65,36 +65,6 @@ select {
 
     &::placeholder {
       color: $darkModeText;
-    }
-  }
-}
-.light-mode {
-  background-color: $lightModeBackground;
-
-  h1,
-  h2,
-  h3,
-  p {
-    color: $lightModeText;
-  }
-
-  .element {
-    background-color: white;
-    box-shadow: 0px 0px 17px -6px rgba(0, 0, 0, 0.75);
-  }
-  input,
-  select,
-  option {
-    border: none;
-    background-color: white;
-    border-radius: 5px;
-    color: $lightModeText;
-    padding: 1em;
-    box-sizing: border-box;
-    box-shadow: 0px 0px 10px -6px rgba(0, 0, 0, 0.75);
-
-    &::placeholder {
-      color: $lightModeText;
     }
   }
 }

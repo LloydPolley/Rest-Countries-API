@@ -16,6 +16,8 @@ const Home = () => {
 
   const { data, status } = useQuery([fetchType, queryValue], fetchHandler);
 
+  console.log("data", data);
+
   return (
     <div className="home-container">
       <Search

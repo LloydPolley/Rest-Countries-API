@@ -8,8 +8,6 @@ const Search = ({ setQueryValue }) => {
   const [dropValue, setDropValue] = useState("All");
   const [enterValue, setEnterValue] = useState("");
 
-  console.log(window.location);
-
   return (
     <form
       className="search"
@@ -18,41 +16,35 @@ const Search = ({ setQueryValue }) => {
         setQueryValue(enterValue);
       }}
     >
-      {window.location.pathname !== "/" ? (
-        <Link to="/">
-          <button className="element">Back</button>
-        </Link>
-      ) : (
-        <>
-          <div className="search__box">
-            <MdSearch className="search__icon" />
-            <input
-              placeholder="Search"
-              onChange={(e) => {
-                console.log("e", e.target.value);
-                setEnterValue(e.target.value);
-              }}
-            />
-          </div>
-
-          <select
-            id="country-drop"
-            name="countries"
-            className="element"
+      <>
+        <div className="search__box">
+          <MdSearch className="search__icon" />
+          <input
+            placeholder="Search"
             onChange={(e) => {
-              setQueryValue(e.target.value);
-              setEnterValue("");
+              console.log("e", e.target.value);
+              setEnterValue(e.target.value);
             }}
-          >
-            <option value="All">Region</option>
-            <option value="Africa">Africa</option>
-            <option value="Americas">Americas</option>
-            <option value="Asia">Asia</option>
-            <option value="Europe">Europe</option>
-            <option value="Oceania">Oceania</option>
-          </select>
-        </>
-      )}
+          />
+        </div>
+
+        {/* <select
+          id="country-drop"
+          name="countries"
+          className="element"
+          onChange={(e) => {
+            setQueryValue(e.target.value);
+            setEnterValue("");
+          }}
+        >
+          <option value="All">Region</option>
+          <option value="Africa">Africa</option>
+          <option value="Americas">Americas</option>
+          <option value="Asia">Asia</option>
+          <option value="Europe">Europe</option>
+          <option value="Oceania">Oceania</option>
+        </select> */}
+      </>
     </form>
   );
 };

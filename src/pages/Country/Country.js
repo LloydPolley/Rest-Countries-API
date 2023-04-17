@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import style from "./Country.module.scss";
 import Search from "../../components/Search/Search";
+import { IoArrowBackOutline } from "react-icons/io5";
 
 const cx = classNames.bind(style);
 
@@ -31,25 +32,25 @@ const Country = (props) => {
     languages,
   } = data[0];
 
-  console.log(flags);
-  console.log(languages);
+  console.log("test", Object.values(languages)[0]);
 
   return (
     <div className={cx("country-container")}>
-      <div
-        className={cx("country-background")}
-        style={{
-          backgroundImage: `url("${flags.svg}")`,
-        }}
-      >
-        <div className={cx("country-overlay")} />
+      <div className={cx("country-back")}>
+        <Link to="/">
+          <IoArrowBackOutline />
+        </Link>
       </div>
-      <Search />
       <div className={cx("country")}>
-        <div className="country-container__data">
+        <div className={cx("country-hero")}>
+          <div className={cx("country-image")}>
+            <img src={flags.svg} />
+          </div>
+        </div>
+        <div className={cx("country-data")}>
           <h1>{official}</h1>
-          <div className="top">
-            <div className="top__left">
+          <div className={cx("country-boxes")}>
+            <div className={cx("box")}>
               <p>
                 Native Name: <span>{official}</span>
               </p>
@@ -66,6 +67,17 @@ const Country = (props) => {
                 Capital: <span>{capital}</span>
               </p>
             </div>
+            <div className={cx("box")}>
+              <p>
+                Top Level Domain: <span>{tld}</span>
+              </p>
+              <p>
+                Currency: <span>{Object.values(currencies)[0]?.name}</span>
+              </p>
+              <p>
+                Language: <span>{Object.values(languages)[0]}</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -74,9 +86,3 @@ const Country = (props) => {
 };
 
 export default Country;
-
-{
-  /* <div className="country-container__image">
-        <img src={flags.png} />
-      </div> */
-}
