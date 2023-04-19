@@ -1,45 +1,15 @@
-.Loading {
-  color: white;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-
-  h2 {
-    margin-bottom: 5px;
-    animation: loadingLines 2s ease-out  infinite forwards;
-  }
-
-  .bar {
-    width: 100%;
-    height: 1px;
-    background-color: white;
-    margin-bottom: 5px;
-    //   animation: loadingLines 2s ease-out 0s infinite forwards;
-    &:nth-child(1) {
-      animation: loadingLines 2s ease-out .0s infinite forwards;
-    }
-    &:nth-child(2) {
-      animation: loadingLines 2s ease-out 1s infinite forwards;
-      width: 75%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    &:nth-child(3) {
-      animation: loadingLines 2s ease-out 1.5s infinite forwards;
-      width: 50%;
-      margin-left: auto;
-      margin-right: auto;
-    }
+@keyframes loading {
+  100% {
+    opacity: 0;
   }
 }
 
-@keyframes loadingLines {
-  0% {
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-  }
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  animation: loading 3s ease infinite;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 50px;
 }

@@ -1,11 +1,11 @@
 .country {
   overflow: hidden;
   border-radius: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.446);
+  // border: 1px solid rgba(255, 255, 255, 0.446);
   z-index: 1;
 
   &:hover {
-    border: 1px solid rgba(255, 255, 255, 1);
+    // border: 1px solid rgba(255, 255, 255, 1);
     box-shadow: 1px 1px 1px solid black;
   }
 

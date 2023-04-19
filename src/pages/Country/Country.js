@@ -7,6 +7,7 @@ import { useQuery } from "react-query";
 import style from "./Country.module.scss";
 import Search from "../../components/Search/Search";
 import { IoArrowBackOutline } from "react-icons/io5";
+import Loading from "../../components/Loading/Loading";
 
 const cx = classNames.bind(style);
 
@@ -16,8 +17,8 @@ const Country = (props) => {
     fetchHandler
   );
 
-  if (!data) {
-    return null;
+  if (status === "loading") {
+    return <Loading />;
   }
 
   const {
