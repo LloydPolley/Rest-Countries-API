@@ -1,5 +1,3 @@
-@import "./pages/Home/Home.scss";
-
 $darkModeElements: #00000049;
 $darkModeBackground: hsl(207, 26%, 17%);
 $darkModeText: hsl(0, 0%, 98%);
@@ -7,6 +5,8 @@ $darkModeText: hsl(0, 0%, 98%);
 $lightModeElements: hsl(0, 0%, 100%);
 $lightModeBackground: hsl(0, 0%, 98%);
 $lightModeText: hsl(200, 15%, 8%);
+
+$borderRadius: 10px;
 
 .App {
   min-height: 100vh;
@@ -57,9 +57,9 @@ body {
   button {
     border: none;
     background-color: $darkModeElements;
-    border-radius: 5px;
+    border-radius: $borderRadius;
     color: $darkModeText;
-    padding: 1em;
+    padding: 15px;
     box-sizing: border-box;
     font-size: 16px;
 

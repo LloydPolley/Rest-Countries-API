@@ -1,3 +1,8 @@
+const fields =
+  "?fields=name,population,region,subregion,capital,tld,flags,currencies,languages,borders";
+
+const fieldCode = "?fields=name,population,region,capital,flags";
+
 export const fetchHandler = async (props) => {
   const { queryKey } = props;
   const fetchType = queryKey[0];
@@ -7,6 +12,8 @@ export const fetchHandler = async (props) => {
   switch (fetchType) {
     case "fetchCountries":
       return fetchCountry(queryValue);
+    case "fetchCountryCode":
+      return fetchCountryCode(queryValue);
     case "fetchRegion":
       console.log("Mangoes and papayas are $2.79 a pound.");
       break;
@@ -16,35 +23,23 @@ export const fetchHandler = async (props) => {
 };
 
 export const fetchCountry = async (queryValue) => {
-  console.log("queryValue", queryValue);
-  const url = !queryValue ? "all" : `name/${queryValue}`;
+  console.log("query value", queryValue);
+  const url = !queryValue ? `all${fieldCode}` : `name/${queryValue}${fields}`;
   const response = await fetch(`https://restcountries.com/v3.1/${url}`);
-  console.log(`https://restcountries.com/v3.1/${url}`);
   return response.json();
 };
 
-export const regionFetch = async (region) => {
-  let response;
-  if (region === "All") {
-    response = await fetch(`https://restcountries.eu/rest/v2/all`);
-  } else {
-    response = await fetch(`https://restcountries.eu/v3.1/region/{region}`);
-  }
-  let data = await response.json();
-  return data;
-};
+export const fetchCountryCode = async (props) => {
+  const { queryKey } = props;
+  const queryValue = queryKey[1];
+  const url = `alpha?codes=${queryValue?.toString()}`;
 
-export const borderFetch = async (...args) => {
-  if (args[0].length !== 0) {
-    let borderString = args.toString().toLowerCase().replace(/,/g, ";");
-    let response = await fetch(
-      `https://restcountries.eu/rest/v2/alpha?codes=${borderString}`
-    );
-    let data = await response.json();
-    return data;
-  } else {
-    return undefined;
-  }
+  if (!queryValue) return;
+  console.log("running", queryValue);
+  const response = await fetch(
+    `https://restcountries.com/v3.1/${url}${fieldCode}`
+  );
+  return response.json();
 };
 
 export const formatNumber = (input) => {

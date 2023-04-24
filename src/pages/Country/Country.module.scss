@@ -17,9 +17,12 @@
 }
 
 .country-image {
-  img {
-    width: 100%;
-  }
+  aspect-ratio: 16/9;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  border-radius: $borderRadius;
 }
 
 .country-data {
@@ -56,6 +59,7 @@
 
 @media (min-width: 1300px) {
   .country-container {
+    width: 1290px;
     margin: 30px auto;
   }
 }

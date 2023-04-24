@@ -22,7 +22,6 @@ const Search = ({ setQueryValue }) => {
           <input
             placeholder="Search"
             onChange={(e) => {
-              console.log("e", e.target.value);
               setEnterValue(e.target.value);
             }}
           />

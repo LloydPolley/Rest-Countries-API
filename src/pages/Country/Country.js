@@ -1,23 +1,35 @@
 import React, { useState, useEffect } from "react";
 import classNames from "classnames/bind";
 
-import { borderFetch, formatNumber, fetchHandler } from "../../data/rest";
+import {
+  borderFetch,
+  formatNumber,
+  fetchHandler,
+  fetchCountryCode,
+} from "../../data/rest";
 import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import style from "./Country.module.scss";
 import Search from "../../components/Search/Search";
 import { IoArrowBackOutline } from "react-icons/io5";
 import Loading from "../../components/Loading/Loading";
+import CountryWidget from "../../components/CountryWidget/CountryWidget";
+import CountryList from "../../components/CountryList/CountryList";
 
 const cx = classNames.bind(style);
 
 const Country = (props) => {
-  const { data, status } = useQuery(
+  const { data: countryData, status: countryStatus } = useQuery(
     ["fetchCountries", props.match.params.id],
     fetchHandler
   );
 
-  if (status === "loading") {
+  const { data, status } = useQuery(
+    ["fetchCountriesCode", countryData && countryData[0].borders],
+    fetchCountryCode
+  );
+
+  if (countryStatus === "loading") {
     return <Loading />;
   }
 
@@ -31,23 +43,15 @@ const Country = (props) => {
     flags,
     currencies,
     languages,
-  } = data[0];
-
-  console.log("test", Object.values(languages)[0]);
+  } = countryData[0];
 
   return (
     <div className={cx("country-container")}>
-      <div className={cx("country-back")}>
-        <Link to="/">
-          <IoArrowBackOutline />
-        </Link>
-      </div>
       <div className={cx("country")}>
-        <div className={cx("country-hero")}>
-          <div className={cx("country-image")}>
-            <img src={flags.svg} />
-          </div>
-        </div>
+        <div
+          className={cx("country-hero", "country-image")}
+          style={{ backgroundImage: `url("${flags.svg}")` }}
+        ></div>
         <div className={cx("country-data")}>
           <h1>{official}</h1>
           <div className={cx("country-boxes")}>
@@ -82,8 +86,22 @@ const Country = (props) => {
           </div>
         </div>
       </div>
+      {data && (
+        <div className={cx("country__borders")}>
+          <h2>Borders</h2>
+          <CountryList data={data} status={status} />
+        </div>
+      )}
     </div>
   );
 };
 
 export default Country;
+
+{
+  /* <div className={cx("country-back")}>
+<Link to="/">
+  <IoArrowBackOutline />
+</Link>
+</div> */
+}
