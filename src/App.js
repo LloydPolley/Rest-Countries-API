@@ -7,7 +7,7 @@ import Header from "./components/Header/Header";
 import Country from "./pages/Country/Country";
 import { QueryClient, QueryClientProvider } from "react-query";
 
-import { BrowserRouter, HashRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const queryClient = new QueryClient();
 
@@ -17,10 +17,10 @@ function App() {
       <div className="App">
         <BrowserRouter>
           <Header />
-          <Switch>
-            <Route path="/" component={Home} exact={true} />
-            <Route path="/:id" component={Country} />
-          </Switch>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/view" element={<Country />} />
+          </Routes>
         </BrowserRouter>
       </div>
     </QueryClientProvider>

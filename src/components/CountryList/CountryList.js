@@ -1,14 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
-import Search from "../../components/Search/Search";
-import {
-  regionFetch,
-  fetchAll,
-  fetchCountry,
-  fetchHandler,
-} from "../../data/rest";
+import React, { useState, useEffect } from "react";
 import CountryWidget from "../CountryWidget/CountryWidget";
 import Loading from "../Loading/Loading";
-import { useQuery } from "react-query";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import style from "./CountryList.module.scss";
 import classNames from "classnames/bind";
@@ -36,11 +28,15 @@ const CountryList = ({ data, status, queryValue }) => {
         data
           ?.slice(0, amount)
           ?.map((country) => (
-            <CountryWidget key={country?.name?.common} data={country} />
+            <CountryWidget key={country.population} data={country} />
           ))
       )}
       {data?.length >= amount && (
-        <div className={cx("amount")} onClick={increaseAmount}>
+        <div
+          className={cx("amount")}
+          onClick={increaseAmount}
+          data-testid="amount-element"
+        >
           <AiOutlinePlusCircle />
         </div>
       )}

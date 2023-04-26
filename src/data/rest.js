@@ -1,5 +1,5 @@
 const fields =
-  "?fields=name,population,region,subregion,capital,tld,flags,currencies,languages,borders";
+  "?fields=name,population,region,subregion,capital,tld,flags,currencies,languages,borders,continents";
 
 const fieldCode = "?fields=name,population,region,capital,flags";
 
@@ -24,7 +24,7 @@ export const fetchHandler = async (props) => {
 
 export const fetchCountry = async (queryValue) => {
   console.log("query value", queryValue);
-  const url = !queryValue ? `all${fieldCode}` : `name/${queryValue}${fields}`;
+  const url = !queryValue ? `all${fieldCode}` : `name/${queryValue}`;
   const response = await fetch(`https://restcountries.com/v3.1/${url}`);
   return response.json();
 };
@@ -36,9 +36,7 @@ export const fetchCountryCode = async (props) => {
 
   if (!queryValue) return;
   console.log("running", queryValue);
-  const response = await fetch(
-    `https://restcountries.com/v3.1/${url}${fieldCode}`
-  );
+  const response = await fetch(`https://restcountries.com/v3.1/${url}`);
   return response.json();
 };
 

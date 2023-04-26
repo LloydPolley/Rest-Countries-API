@@ -7,23 +7,28 @@ import {
   fetchHandler,
   fetchCountryCode,
 } from "../../data/rest";
-import { Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import style from "./Country.module.scss";
 import Search from "../../components/Search/Search";
 import { IoArrowBackOutline } from "react-icons/io5";
+import { BsFillPeopleFill } from "react-icons/bs";
+import { ImBubbles } from "react-icons/im";
+import { TbWorldWww } from "react-icons/tb";
+import { FaCity } from "react-icons/fa";
 import Loading from "../../components/Loading/Loading";
 import CountryWidget from "../../components/CountryWidget/CountryWidget";
 import CountryList from "../../components/CountryList/CountryList";
 
 const cx = classNames.bind(style);
 
-const Country = (props) => {
+const Country = () => {
+  const [searchParams] = useSearchParams();
+
   const { data: countryData, status: countryStatus } = useQuery(
-    ["fetchCountries", props.match.params.id],
+    ["fetchCountries", searchParams.get("location")],
     fetchHandler
   );
-
   const { data, status } = useQuery(
     ["fetchCountriesCode", countryData && countryData[0].borders],
     fetchCountryCode
@@ -43,7 +48,10 @@ const Country = (props) => {
     flags,
     currencies,
     languages,
+    continents,
   } = countryData[0];
+
+  console.log("countrydata", countryData);
 
   return (
     <div className={cx("country-container")}>
@@ -53,36 +61,39 @@ const Country = (props) => {
           style={{ backgroundImage: `url("${flags.svg}")` }}
         ></div>
         <div className={cx("country-data")}>
+          <p className={cx("country-continent")}>{continents}</p>
           <h1>{official}</h1>
           <div className={cx("country-boxes")}>
-            <div className={cx("box")}>
-              <p>
-                Native Name: <span>{official}</span>
-              </p>
-              <p>
-                Population: <span>{formatNumber(population)}</span>
-              </p>
-              <p>
-                Region: <span>{region}</span>
-              </p>
-              <p>
-                Sub Region: <span>{subregion}</span>
-              </p>
-              <p>
-                Capital: <span>{capital}</span>
-              </p>
-            </div>
-            <div className={cx("box")}>
-              <p>
-                Top Level Domain: <span>{tld}</span>
-              </p>
-              <p>
-                Currency: <span>{Object.values(currencies)[0]?.name}</span>
-              </p>
-              <p>
-                Language: <span>{Object.values(languages)[0]}</span>
-              </p>
-            </div>
+            <p>
+              Native Name: <span>{official}</span>
+            </p>
+            <p>
+              <BsFillPeopleFill /> <span>{formatNumber(population)}</span>
+            </p>
+            <p>
+              Region: <span>{region}</span>
+            </p>
+            <p>
+              Sub Region: <span>{subregion}</span>
+            </p>
+            <p>
+              <FaCity /> <span>{capital}</span>
+            </p>
+
+            <p>
+              <TbWorldWww /> <span>{tld}</span>
+            </p>
+            <p>
+              Currency:
+              <span>
+                {Object.values(currencies)[0]?.symbol}
+                {Object.values(currencies)[0]?.name}
+              </span>
+            </p>
+            <p>
+              <ImBubbles />
+              <span>{Object.values(languages)[0]}</span>
+            </p>
           </div>
         </div>
       </div>
